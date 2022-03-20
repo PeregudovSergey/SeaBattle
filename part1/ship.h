@@ -1,3 +1,5 @@
+#pragma once
+
 #include <bits/stdc++.h>
 
 ///standard cell without armor and any properies 
@@ -8,24 +10,14 @@ struct BaseCell {
 	BaseCell(int x, int y, bool isKilled) : x(x), y(y), isKilled(isKilled) {}
 	virtual void attack() {
 		isKilled = true; 
-	}
-
-	/*
-	virtual char getColor() {
-		if (isKilled) {
-			return 'x'; 
-		} else {
-			return '?'; 
-		}
-	}
-	*/	
+	}	
 }; 
 
-bool operator==(const BaseCell& lhs, const BaseCell& rhs) {
+bool operator==(BaseCell lhs, BaseCell rhs) {
 	return lhs.x == rhs.x && lhs.y == rhs.y; 
 }
 
-///pattern abstract fabrica 
+///pattern abstract factory 
 class Ship {
 protected:
 	std::vector<BaseCell> cells; 	
@@ -33,6 +25,10 @@ public:
 	virtual ~Ship() = 0; 
 	virtual void attack(int x, int y) = 0; 		
 	virtual void buildStandardShip(std::vector<BaseCell>& pos) = 0; 
+
+	std::vector<BaseCell> getCells() {
+		return cells; 
+	}
 
 	bool isThatShipCell(int x, int y) {
 		bool ok = false; 
@@ -42,7 +38,14 @@ public:
 		return ok; 
 	}
 
-	void addCell(const BaseCell& cell) {
+	bool alive() {		
+		for (auto& cell : cells) {
+			if (!cell.isKilled) return true; 
+		}
+		return false; 
+	}
+
+	void addCell(BaseCell& cell) {
 		cells.push_back(cell); 
 	}
 

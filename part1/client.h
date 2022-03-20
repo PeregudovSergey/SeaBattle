@@ -1,13 +1,26 @@
-#include "builder.h"
+#pragma once
 
+#include "field.h"
+
+///клиент у которого будут поддерживаться такие операции
 class Client {
-private: 
-	InterfaceForFields* interfaceField; 
-public: 
-	void setEnvironment(string game, string opponent) {
-		if (game == "classic") {}
+private:
+	InterfaceForFields* opponentField;
+public:
+	Client() : opponentField(nullptr) {}
+
+	Client(InterfaceForFields* opponentField)
+	 : opponentField(opponentField) {}	
+
+	bool attack(int x, int y) {
+		return opponentField->attack(x, y); 
 	}
-	void showField() {
-		
+
+	bool gameOver() {
+		return opponentField->gameOver(); 
 	}
-}
+
+	void showOpponentField(std::ostream& os) {
+		opponentField->write(os);
+	}
+};

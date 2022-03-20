@@ -1,3 +1,5 @@
+#pragma once
+
 #include "field.h"
 
 ///pattern builder. We want to set properties for different games.
@@ -21,12 +23,7 @@ namespace Builder {
 		int x2, y2; 
 	}; 
 
-	InterfaceForFields* buildClassicGame(std::vector<rect>& coordShips) {
-		std::vector<Ship*> ships; 
-		for (auto ship : coordShips) {
-			ships.push_back(buildStandardShip(ship.x1, ship.y1, ship.x2, ship.y2)); 
-		}
-
+	InterfaceForFields* buildClassicGame(std::vector<Ship*> ships) {		
 		InterfaceForFields* interfaceField = new StandardField;
 		interfaceField->setSize(10, 10); 		
 		for (auto ship : ships) {
