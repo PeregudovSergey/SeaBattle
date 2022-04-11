@@ -1,4 +1,3 @@
-#pragma once 
 #include "bot.h"
 
 std::vector<Ship*> Bot::setShips() {
@@ -13,7 +12,7 @@ std::vector<Ship*> Bot::setShips() {
 	ships.push_back(Builder::buildStandardShip(2, 2, 2, 3));
 
 	ships.push_back(Builder::buildStandardShip(9, 2, 9, 4));
-	ships.push_back(Builder::buildStandardShip(7, 2, 7, 4));		
+	ships.push_back(Builder::buildStandardShip(7, 2, 7, 4));
 
 	ships.push_back(Builder::buildStandardShip(0, 2, 0, 5));
 

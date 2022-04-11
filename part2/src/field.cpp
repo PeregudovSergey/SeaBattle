@@ -1,4 +1,3 @@
-#pragma once
 #include "field.h"
 
 /////observer
@@ -36,7 +35,11 @@ void StandardField::addShip(Ship* ship) {
 }	
 
 bool StandardField::attack(int x, int y) {
-	return notify(x, y); 		
+	bool ok = notify(x, y); 		
+	if (!ok) {
+		miss.push_back(std::make_pair(x, y));
+	}
+	return ok; 
 }
 
 bool StandardField::notify(int x, int y) {
@@ -70,6 +73,9 @@ void StandardField::killShip(Ship* ship, std::vector<std::vector<char> >& field,
 
 std::vector<std::vector<char> > StandardField::returnOpponentField() {
 	std::vector<std::vector<char> > field(N, std::vector<char>(M, '?'));
+	for (auto cell : miss) {
+		field[cell.first][cell.second] = 'o'; 
+	}
 	for (int i = 0; i < views.size(); ++i) {
 		Ship* ship = views[i]->getShip(); 
 		std::vector<BaseCell> cells = ship->getCells(); 
@@ -85,6 +91,9 @@ std::vector<std::vector<char> > StandardField::returnOpponentField() {
 
 std::vector<std::vector<char> > StandardField::returnMyField() {
 	std::vector<std::vector<char> > field(N, std::vector<char>(M, '.'));
+	for (auto cell : miss) {
+		field[cell.first][cell.second] = 'R'; 
+	}
 	for (int i = 0; i < views.size(); ++i) {
 		Ship* ship = views[i]->getShip(); 
 		std::vector<BaseCell> cells = ship->getCells(); 
@@ -116,7 +125,7 @@ std::ostream& StandardField::writeMyField(std::ostream& os) {
     	for (int j = 0; j < M; ++j) {
     		os << field[i][j];     	
     	}
-    	os << '\n'; 
+    	os << '\n';
     }            
     return os;
 }

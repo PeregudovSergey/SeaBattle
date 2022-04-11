@@ -1,5 +1,4 @@
 //game with bot
-#pragma once 
 #include <bits/stdc++.h>
 #include "client.h"
 #include "buildField.h" 
@@ -32,21 +31,23 @@ InterfaceForFields* buildClientField() {
 	return Builder::buildClassicGame(myShips); 
 }
 
-void ClientMove(Client& me) {
+void ClientMove(InterfaceForFields* me) {	
+	me->writeMyField(std::cout); 	
+	std::cout << "\n\n\n\n"; 
 	std::cout << "Введите ваш ход" << std::endl; 
-	me.showOpponentField(std::cout);
+	me->writeOpponentField(std::cout);
 	int x1, y1; 
 	get_coord(x1, y1); 
 	std::cerr << x1 << " " << y1 << std::endl; 
-	bool hit = me.attack(x1, y1); 
+	bool hit = me->attack(x1, y1); 
 	if (hit) {
-		if (me.gameOver()) {
+		if (me->gameOver()) {
 			std::cout << "Вы победили!" << std::endl; 
 			exit(0); 
 		} 
 		std::cout << "Вы ранили корабль, а может и убили!" << std::endl; 
-		me.showOpponentField(std::cout);
-		std::cout << "\n\n\n\n\n\n"; 
+		me->writeOpponentField(std::cout);
+		std::cout << "\n\n\n"; 
 		ClientMove(me); 		
 	} else {
 		std::cout << "Мимо:(" << std::endl; 		
@@ -54,19 +55,18 @@ void ClientMove(Client& me) {
 	}
 }
 
-void BotMove(Client& bot) {	
+void BotMove(InterfaceForFields* bot) {	
 	std::pair<int, int> pr = Bot::getRandomCell(10, 10); 
 	int x1 = pr.first, y1 = pr.second; 	
-	bool hit = bot.attack(x1, y1); 
+	bool hit = bot->attack(x1, y1); 
 	if (hit) {
-		if (bot.gameOver()) {
+		if (bot->gameOver()) {
 			std::cout << "Вы проиграли:(" << std::endl; 
 			exit(0); 
 		} 
 		std::cout << "Бот ранил ваш корабль!" << std::endl; 
-		std::cout << "Вот что с вашем полем!" << std::endl; 
-		bot.showOpponentField(std::cout);
-		std::cout << "\n\n\n\n\n\n"; 
+		std::cout << "Вот что с вашем полем!" << std::endl; 		
+		bot->writeOpponentField(std::cout); 
 		BotMove(bot); 		
 	} else {
 		std::cout << "Бот промазал" << std::endl; 		
@@ -78,9 +78,9 @@ int main(int argc, char** argv) {
 	InterfaceForFields* myField = buildClientField(); 
 	std::cout << "Вы успешно расставили свои корабли!" << std::endl; 
 	InterfaceForFields* botField = Builder::buildClassicGame(Bot::setShips());
-
-	Client me(botField); 
-	Client bot(myField);  
+	
+	InterfaceForFields* me = new Client(botField, myField); 
+	InterfaceForFields* bot = new Client(myField, botField); 	
 
 	std::cout << "Toss a coin!" << std::endl;
 	std::cout << "You win! Go first" << std::endl;
@@ -94,13 +94,3 @@ int main(int argc, char** argv) {
 		turn ^= 1; 
 	}
 }
-
-/*
-#include "client.h"
-#include "buildField.h" 
-#include "bot.h"
-
-int main() {
-	std::cout << "here\n"; 
-	return 0; 
-}*/

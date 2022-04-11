@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -std=c++17 -std=c++17 -shared -Wl,-soname,libclient.so -o ../../lib/libclient.so CMakeFiles/client.dir/client.cpp.o  -Wl,-rpath,/home/sergey/projectTP/part1/lib ../../lib/libbuilder.so ../../lib/libfield.so ../../lib/libship.so 

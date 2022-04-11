@@ -16,8 +16,7 @@ public:
 	virtual std::vector<std::vector<char> > returnOpponentField() = 0; 
 	virtual std::vector<std::vector<char> > returnMyField() = 0; 
 	virtual std::ostream& writeOpponentField(std::ostream& os) = 0; 			
-	virtual std::ostream& writeMyField(std::ostream& os) = 0; 			
-	////нужно будет добавить вывод своего поля, пока что есть только чужое
+	virtual std::ostream& writeMyField(std::ostream& os) = 0; 				
 };
 
 class Observer {
@@ -35,6 +34,7 @@ public:
 class StandardField : public InterfaceForFields {
 private:
 	int N, M; 	
+	std::vector<std::pair<int, int> > miss; 
 	std::vector<Observer*> views;	
 	bool check(int xx, int yy); 
 	bool notify(int x, int y); 		

@@ -1,4 +1,3 @@
-#pragma once 
 #include "ship.h"
 
 std::vector<BaseCell> Ship::getCells() {

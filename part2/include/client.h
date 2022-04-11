@@ -1,18 +1,26 @@
 #pragma once
 #include "field.h"
 ///клиент у которого будут поддерживаться такие операции
-class Client {
+class Client : public InterfaceForFields {
 private:
 	InterfaceForFields* opponentField;
+	InterfaceForFields* myField;
 public:
-	Client() : opponentField(nullptr) {}
+	Client() : opponentField(nullptr), myField(nullptr) {}
 
-	Client(InterfaceForFields* opponentField)
-	 : opponentField(opponentField) {}	
+	Client(InterfaceForFields* opponentField, InterfaceForFields* myField)
+	 : opponentField(opponentField), myField(myField) {}
 
-	bool attack(int x, int y); 		
+	Client(const Client& client)
+	 : opponentField(client.opponentField), myField(client.myField) {}
 
-	bool gameOver(); 		
+	void setSize(int n, int m) override;
+	void addShip(Ship* ship) override;
+	bool attack(int x, int y) override;
+	bool gameOver() override; 		
 
-	void showOpponentField(std::ostream& os); 		
+	std::vector<std::vector<char> > returnOpponentField() override; 
+	std::vector<std::vector<char> > returnMyField() override; 
+	std::ostream& writeOpponentField(std::ostream& os) override; 			
+	std::ostream& writeMyField(std::ostream& os) override; 			
 };
