@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/bot.h
+buildField.h
+../include/buildField.h
+bits/stdc++.h
+-
+
+../include/buildField.h
+ship.h
+../include/ship.h
+field.h
+../include/field.h
+
+../include/field.h
+bits/stdc++.h
+-
+ship.h
+../include/ship.h
+
+../include/ship.h
+bits/stdc++.h
+-
+
+/home/sergey/projectTP/part1/src/bot.cpp
+bot.h
+/home/sergey/projectTP/part1/src/bot.h
+

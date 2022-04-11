@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++17 -std=c++17 -shared -Wl,-soname,libbuilder.so -o ../../lib/libbuilder.so CMakeFiles/builder.dir/buildField.cpp.o  -Wl,-rpath,/home/sergey/projectTP/part1/lib ../../lib/libfield.so ../../lib/libship.so 

@@ -1,0 +1,10 @@
+/home/sergey/projectTP/part1/build/CMakeFiles/rebuild_cache.dir
+/home/sergey/projectTP/part1/build/CMakeFiles/edit_cache.dir
+/home/sergey/projectTP/part1/build/CMakeFiles/GAME.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/rebuild_cache.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/bot.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/edit_cache.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/builder.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/field.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/client.dir
+/home/sergey/projectTP/part1/build/src/CMakeFiles/ship.dir
