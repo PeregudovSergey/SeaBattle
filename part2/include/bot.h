@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <stdlib.h>>
 
 namespace Bot {
 	std::vector<Ship*> setShips();
