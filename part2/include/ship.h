@@ -1,5 +1,7 @@
 #pragma once 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
 ///standard cell without armor and any properies 
 struct BaseCell {
 	int x, y;
