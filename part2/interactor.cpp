@@ -1,5 +1,7 @@
 //game with bot
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
 #include "client.h"
 #include "buildField.h" 
 #include "bot.h"
