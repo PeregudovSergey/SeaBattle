@@ -1,8 +1,8 @@
 #pragma once 
 #include "buildField.h"
 #include <iostream>
-#incluce <vector>
-#incluce <string>
+#include <vector>
+#include <string>
 
 namespace Bot {
 	std::vector<Ship*> setShips();
