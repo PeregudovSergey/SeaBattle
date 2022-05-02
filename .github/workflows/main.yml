@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: CHECK-RUN
 
 on:
   push:
@@ -7,10 +7,9 @@ on:
     branches: [ dev ]
 
 jobs:
-  build:
-
+  RUN-UBUNTU:
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v3
     
@@ -19,6 +18,12 @@ jobs:
   
     - name: Build
       run: cd part2 && mkdir build && cd build && cmake .. && make
+
+  RUN-WINDOWS:
+      runs-on: windows-latest
+    
+      steps:
+      - uses: actions/checkout@v3
       
-    - name: Run exe
-      run: cd part2/bin && ./GAME
+      - name: Build
+        run: cd part2 && mkdir build && cd build && cmake .. && make
