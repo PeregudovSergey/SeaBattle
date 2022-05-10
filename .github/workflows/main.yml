@@ -18,4 +18,4 @@ jobs:
     
     - name: Build
       working-directory: ${{github.workspace}}/part2        
-      run: mkdir build && cmake --build ${{github.workspace}}/build
+      run: mkdir build && cd build && cmake --build ${{github.workspace}}/build
