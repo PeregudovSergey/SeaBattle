@@ -17,5 +17,5 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Build
-      working-directory: ${{github.workspace}}/part2        
-      run: mkdir build && cd build && cmake --build ${{github.workspace}}/build
+      #working-directory: ${{github.workspace}}/part2        
+      run: cd part2 && mkdir build && cd build && cmake --build ${{github.workspace}}/part2/build
